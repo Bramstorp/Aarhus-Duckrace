@@ -61,6 +61,7 @@ export const CheckoutScreen = ({ navigation }) => {
   }
   return (
     <SafeArea>
+      <RestaurantInfoCard restaurant={restaurant} />
       {isLoading && <PaymentProcessing />}
       <ScrollView>
         <Spacer position="left" size="medium">

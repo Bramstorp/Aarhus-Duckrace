@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import LottieView from "lottie-react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { DuckContext } from "../../../services/duck/duck.context";
 
 import {
   HomeBackground,
@@ -11,9 +12,9 @@ import {
 } from "../components/home.styles";
 
 export const HomeScreen = ({ navigation }) => {
-  const [name, setName] = useState("");
-  const [duckAmount, setDuckAmount] = useState("");
+  const { addDuck } = useContext(DuckContext);
 
+  const [name, setName] = useState("");
   return (
     <HomeBackground>
       <AnimationWrapper>
@@ -37,16 +38,13 @@ export const HomeScreen = ({ navigation }) => {
         />
       </Spacer>
       <Spacer size="large">
-        <Input
-          label="Antal"
-          value={duckAmount}
-          keyboardType="numeric"
-          autoCapitalize="none"
-          onChangeText={(u) => setDuckAmount(u)}
-        />
-      </Spacer>
-      <Spacer size="large">
-        <BuyButton onPress={() => navigation.navigate("Checkout")}>
+        <BuyButton
+          onPress={() => {
+            addDuck(name);
+            setName("");
+            navigation.navigate("Checkout");
+          }}
+        >
           Køb en and til racet
         </BuyButton>
       </Spacer>

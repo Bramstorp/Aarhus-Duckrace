@@ -1,0 +1,15 @@
+Hej Alle
+ 
+Vi har fået en forespørgsel omkring udvikling af en app til Aarhus Duckrace
+ 
+I hovedtræk, så har man nogle tusinde gule badeænder med hver sit nr.
+Folk kan købe en and med et unikt nr.
+ 
+Alle ænderne bliver sluppet løs et sted i Aarhus Å og der er en målstreg ved Immervad
+Der vil blive udtrukket nogle vindere
+ 
+Appen skal kunne håndtere betaling af en ”and” eks. indbetaling af 20 kr.
+data  over person og ande nr. skal være i eks. SQL database, så man hurtig kan finde frem til, hvem som ejer and nr. 4711
+ 
+Der skal være noget synligt reklame for sponsorerne (Salling group, EG-data, AarhusStifttidende mfl.)
+Noget du kunne være interesseret i at lave ?

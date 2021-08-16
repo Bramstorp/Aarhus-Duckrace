@@ -30,7 +30,7 @@ export const CartContextProvider = ({ children }) => {
       console.log("error storing", e);
     }
   };
-  
+
   useEffect(() => {
     if (!cart.length) {
       setSum(0);
