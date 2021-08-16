@@ -2,11 +2,10 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import { RestaurantsNavigator } from "./restaurants.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
 import { CheckoutNavigator } from "./checkout.navigator";
+import { HomeNavigator } from "./home.navigator";
 import { CartContextProvider } from "../../services/cart/cart.context";
-import { RestaurantsContextProvider } from "../../services/restaurants/restaurants.context";
 import { LocationContextProvider } from "../../services/location/location.context";
 import { colors } from "../../infrastructure/theme/colors";
 
@@ -38,7 +37,7 @@ export const AppNavigator = () => (
               inactiveTintColor: colors.brand.muted,
             }}
           >
-            <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+            <Tab.Screen name="Restaurants" component={HomeNavigator} />
             <Tab.Screen name="Checkout" component={CheckoutNavigator} />
             <Tab.Screen name="Map" component={MapScreen} />
           </Tab.Navigator>
