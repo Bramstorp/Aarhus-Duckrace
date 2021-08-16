@@ -1,35 +1,12 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [restaurant, setRestaurant] = useState(null);
+  const [ducks, setDucks] = useState(null);
 
   const [sum, setSum] = useState(0);
-
-  const saveCart = async (rst, crt, uid) => {
-    try {
-      const jsonValue = JSON.stringify({ restaurant: rst, cart: crt });
-      await AsyncStorage.setItem(`@cart-${uid}`, jsonValue);
-    } catch (e) {
-      console.log("error storing", e);
-    }
-  };
-
-  const loadCart = async (uid) => {
-    try {
-      const value = await AsyncStorage.getItem(`@cart-${uid}`);
-      if (value !== null) {
-        const { restaurant: rst, cart: crt } = JSON.parse(value);
-        setRestaurant(rst);
-        setCart(crt);
-      }
-    } catch (e) {
-      console.log("error storing", e);
-    }
-  };
 
   useEffect(() => {
     if (!cart.length) {
@@ -43,8 +20,8 @@ export const CartContextProvider = ({ children }) => {
   }, [cart]);
 
   const add = (item, rst) => {
-    if (!restaurant || restaurant.placeId !== rst.placeId) {
-      setRestaurant(rst);
+    if (!ducks || ducks.placeId !== rst.placeId) {
+      setDucks(rst);
       setCart([item]);
     } else {
       setCart([...cart, item]);
@@ -53,7 +30,7 @@ export const CartContextProvider = ({ children }) => {
 
   const clear = () => {
     setCart([]);
-    setRestaurant(null);
+    setDucks(null);
   };
 
   return (
@@ -61,7 +38,7 @@ export const CartContextProvider = ({ children }) => {
       value={{
         addToCart: add,
         clearCart: clear,
-        restaurant,
+        ducks,
         cart,
         sum,
       }}

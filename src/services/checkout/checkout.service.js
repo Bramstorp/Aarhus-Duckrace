@@ -2,7 +2,7 @@ import createStripe from "stripe-client";
 import { host } from "../../utils/env";
 
 const stripe = createStripe(
-  "pk_test_51HzDwlIfEuMDL6nvAXXM3pbywxTyQjerlEGqAyg8sUESBJKtAy6j86uMoCvYLInPpahyRSC3S8G65md8jbkGYPNE002bZm2QZf"
+  "pk_test_51JP87PDHUHSggWLQyNTIWejkIgTc3FTzD226yYgJWW4hhruq07KDXlmZrGQUVHpEDfrdyvB1YNtZqif1OvnjxgNx00nn5BY6g8"
 );
 
 export const cardTokenRequest = (card) => stripe.createToken({ card });
@@ -17,7 +17,7 @@ export const payRequest = (token, amount, name) => {
     method: "POST",
   }).then((res) => {
     if (res.status > 200) {
-      return Promise.reject("something went wrong processing your payment");
+      return Promise.reject("noget gik galt med betaling");
     }
     return res.json();
   });

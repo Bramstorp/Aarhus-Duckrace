@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import LottieView from "lottie-react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
-import { DuckContext } from "../../../services/duck/duck.context";
 
 import {
   HomeBackground,
@@ -10,9 +9,10 @@ import {
   Title,
   Input,
 } from "../components/home.styles";
+import { CartContext } from "../../../services/cart/cart.context";
 
 export const HomeScreen = ({ navigation }) => {
-  const { addDuck } = useContext(DuckContext);
+  const { addToCart } = useContext(CartContext);
 
   const [name, setName] = useState("");
   return (
@@ -40,7 +40,7 @@ export const HomeScreen = ({ navigation }) => {
       <Spacer size="large">
         <BuyButton
           onPress={() => {
-            addDuck(name);
+            addToCart({ item: "And", price: 20 }, name);
             setName("");
             navigation.navigate("Checkout");
           }}

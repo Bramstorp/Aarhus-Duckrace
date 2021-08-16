@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ScrollView } from "react-native";
 import { List, Divider } from "react-native-paper";
 
@@ -21,7 +21,7 @@ import {
 import { payRequest } from "../../../services/checkout/checkout.service";
 
 export const CheckoutScreen = ({ navigation }) => {
-  const { cart, restaurant, clearCart, sum } = useContext(CartContext);
+  const { cart, ducks, clearCart, sum } = useContext(CartContext);
   const [name, setName] = useState("");
   const [card, setCard] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,7 @@ export const CheckoutScreen = ({ navigation }) => {
     if (!card || !card.id) {
       setIsLoading(false);
       navigation.navigate("CheckoutError", {
-        error: "Please fill in a valid credit card",
+        error: "Det givende kort er ikke korrekt eller findes ikke",
       });
       return;
     }
@@ -49,7 +49,7 @@ export const CheckoutScreen = ({ navigation }) => {
       });
   };
 
-  if (!cart.length || !restaurant) {
+  if (!cart.length || !ducks) {
     return (
       <SafeArea>
         <CartIconContainer>
@@ -61,29 +61,25 @@ export const CheckoutScreen = ({ navigation }) => {
   }
   return (
     <SafeArea>
-      <RestaurantInfoCard restaurant={restaurant} />
       {isLoading && <PaymentProcessing />}
       <ScrollView>
         <Spacer position="left" size="medium">
           <Spacer position="top" size="large">
-            <Text>Your Order</Text>
+            <Text>Din Bestilling</Text>
           </Spacer>
           <List.Section>
             {cart.map(({ item, price }, i) => {
               return (
-                <List.Item
-                  key={`item-${i}`}
-                  title={`${item} - ${price / 100}`}
-                />
+                <List.Item key={`item-${i}`} title={`${item} - ${price} kr`} />
               );
             })}
           </List.Section>
-          <Text>Total: {sum / 100}</Text>
+          <Text>Total Pris: {sum} kr</Text>
         </Spacer>
         <Spacer position="top" size="large" />
         <Divider />
         <NameInput
-          label="Name"
+          label="Kortholders navn"
           value={name}
           onChangeText={(t) => {
             setName(t);
