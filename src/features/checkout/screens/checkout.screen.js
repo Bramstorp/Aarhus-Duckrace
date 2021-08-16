@@ -18,7 +18,6 @@ import {
   ClearButton,
   PaymentProcessing,
 } from "../components/checkout.styles";
-import { RestaurantInfoCard } from "../../restaurants/components/restaurant-info-card.component";
 import { payRequest } from "../../../services/checkout/checkout.service";
 
 export const CheckoutScreen = ({ navigation }) => {
@@ -62,7 +61,6 @@ export const CheckoutScreen = ({ navigation }) => {
   }
   return (
     <SafeArea>
-      <RestaurantInfoCard restaurant={restaurant} />
       {isLoading && <PaymentProcessing />}
       <ScrollView>
         <Spacer position="left" size="medium">

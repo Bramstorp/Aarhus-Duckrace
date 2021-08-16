@@ -3,7 +3,6 @@ import MapView from "react-native-maps";
 import styled from "styled-components/native";
 
 import { LocationContext } from "../../../services/location/location.context";
-import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
 import { Search } from "../components/search.component";
 import { MapCallout } from "../components/map-callout.component";
@@ -15,7 +14,6 @@ const Map = styled(MapView)`
 
 const RestaurantMap = ({ navigation }) => {
   const { location } = useContext(LocationContext);
-  const { restaurants = [] } = useContext(RestaurantsContext);
 
   const [latDelta, setLatDelta] = useState(0);
 

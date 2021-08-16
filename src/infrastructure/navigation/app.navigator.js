@@ -27,21 +27,19 @@ const createScreenOptions = ({ route }) => {
 };
 
 export const AppNavigator = () => (
-    <LocationContextProvider>
-      <RestaurantsContextProvider>
-        <CartContextProvider>
-          <Tab.Navigator
-            screenOptions={createScreenOptions}
-            tabBarOptions={{
-              activeTintColor: colors.brand.primary,
-              inactiveTintColor: colors.brand.muted,
-            }}
-          >
-            <Tab.Screen name="Restaurants" component={HomeNavigator} />
-            <Tab.Screen name="Checkout" component={CheckoutNavigator} />
-            <Tab.Screen name="Map" component={MapScreen} />
-          </Tab.Navigator>
-        </CartContextProvider>
-      </RestaurantsContextProvider>
-    </LocationContextProvider>
+  <LocationContextProvider>
+    <CartContextProvider>
+      <Tab.Navigator
+        screenOptions={createScreenOptions}
+        tabBarOptions={{
+          activeTintColor: colors.brand.primary,
+          inactiveTintColor: colors.brand.muted,
+        }}
+      >
+        <Tab.Screen name="Restaurants" component={HomeNavigator} />
+        <Tab.Screen name="Checkout" component={CheckoutNavigator} />
+        <Tab.Screen name="Map" component={MapScreen} />
+      </Tab.Navigator>
+    </CartContextProvider>
+  </LocationContextProvider>
 );
