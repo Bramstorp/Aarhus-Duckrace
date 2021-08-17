@@ -7,7 +7,6 @@ import { CheckoutNavigator } from "./checkout.navigator";
 import { HomeNavigator } from "./home.navigator";
 import { CartContextProvider } from "../../services/cart/cart.context";
 import { LocationContextProvider } from "../../services/location/location.context";
-import { DuckContextProvider } from "../../services/duck/duck.context";
 import { colors } from "../../infrastructure/theme/colors";
 
 const Tab = createBottomTabNavigator();
@@ -28,21 +27,19 @@ const createScreenOptions = ({ route }) => {
 };
 
 export const AppNavigator = () => (
-  <DuckContextProvider>
-    <LocationContextProvider>
-      <CartContextProvider>
-        <Tab.Navigator
-          screenOptions={createScreenOptions}
-          tabBarOptions={{
-            activeTintColor: colors.brand.primary,
-            inactiveTintColor: colors.brand.muted,
-          }}
-        >
-          <Tab.Screen name="Restaurants" component={HomeNavigator} />
-          <Tab.Screen name="Checkout" component={CheckoutNavigator} />
-          <Tab.Screen name="Map" component={MapScreen} />
-        </Tab.Navigator>
-      </CartContextProvider>
-    </LocationContextProvider>
-  </DuckContextProvider>
+  <LocationContextProvider>
+    <CartContextProvider>
+      <Tab.Navigator
+        screenOptions={createScreenOptions}
+        tabBarOptions={{
+          activeTintColor: colors.brand.primary,
+          inactiveTintColor: colors.brand.muted,
+        }}
+      >
+        <Tab.Screen name="Restaurants" component={HomeNavigator} />
+        <Tab.Screen name="Checkout" component={CheckoutNavigator} />
+        <Tab.Screen name="Map" component={MapScreen} />
+      </Tab.Navigator>
+    </CartContextProvider>
+  </LocationContextProvider>
 );
