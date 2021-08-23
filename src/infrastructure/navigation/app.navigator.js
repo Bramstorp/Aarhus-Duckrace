@@ -2,11 +2,9 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import { MapScreen } from "../../features/map/screens/map.screen";
 import { CheckoutNavigator } from "./checkout.navigator";
 import { HomeNavigator } from "./home.navigator";
 import { CartContextProvider } from "../../services/cart/cart.context";
-import { LocationContextProvider } from "../../services/location/location.context";
 import { colors } from "../../infrastructure/theme/colors";
 
 const Tab = createBottomTabNavigator();
@@ -27,7 +25,6 @@ const createScreenOptions = ({ route }) => {
 };
 
 export const AppNavigator = () => (
-  <LocationContextProvider>
     <CartContextProvider>
       <Tab.Navigator
         screenOptions={createScreenOptions}
@@ -38,8 +35,6 @@ export const AppNavigator = () => (
       >
         <Tab.Screen name="Hjem" component={HomeNavigator} />
         <Tab.Screen name="Checkout" component={CheckoutNavigator} />
-        <Tab.Screen name="Map" component={MapScreen} />
       </Tab.Navigator>
     </CartContextProvider>
-  </LocationContextProvider>
 );
